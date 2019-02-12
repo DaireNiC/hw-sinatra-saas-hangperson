@@ -31,24 +31,26 @@ class HangpersonGame
   end
   
   # display word with missing chars
-   def word_with_guesses
+  def word_with_guesses
     
   if @guesses.empty?
-     return @word.gsub(/./, '-') 
-   end
+    return @word.gsub(/./, '-') 
 
     # swap all chars from guesses array with - 
-   @word.gsub(/[^#{@guesses}]/, '-')
+   else 
+     return @word.gsub(/[^#{@guesses}]/, '-')
+  end 
     
   end
   
   # check for 7 incorect guesses or correct word guess
   def check_win_or_lose
     
-    return :lose if @wrong_guesses.length == 7
-
-    return @word.length then :win
-      else :play end
+ 
+   return :lose if word_with_guesses.include? "-" and @wrong_guesses.length > 6
+   return :win if not word_with_guesses.include? "-"
+   return :play
+    
   end
   
   # User guesses a letter
